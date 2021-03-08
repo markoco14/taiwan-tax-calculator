@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset='utf-8'>
+		<title>Taiwan Tax</title>
+		<style>
+
+
+			/* style the header */
+			.head-container {
+				position:relative;
+				text-align:center;
+				background-color: blue;
+
+			}
+
+			.logo-box {
+				position:relative;
+				margin:auto;
+				top:10px;
+				border: 2px solid black;
+				width:100px;
+				height:100px;
+				text-align:center;
+			}
+
+			.tiss{
+				font-size:2em;
+			}
+
+			.page-title {
+				background-color: green;
+				line-height:3em;
+			}
+
+			
+
+			/* style the table */
+
+			.tax-box {
+				position:relative;
+				width:40%;
+				margin-left:20px;
+				font-family: Helvetica;
+				border: 2px solid black;
+				padding-left:5px;
+				padding-right:5px;
+			}
+
+			.page-name {
+				text-align:center;
+				font-size:2em;
+				line-height:2em;
+				background-color: rgba(50,50,200,0.8);
+			}
+			.table-head {
+				background-color: rgba(50,50,200,0.8);
+				text-align:center;
+			}
+
+			.table-info {
+				background-color:rgba(200,200,200,0.8);
+				text-align:right;
+			}
+
+			.label {
+				text-align:center;
+			}
+			.income {
+				position:relative;
+				left:25%;
+				line-height:2em;
+				margin-bottom:15px;
+				width: 50%;
+			}
+			.submit {
+				width: 100%;
+				font-size:2em;
+				margin-bottom:15px;
+			}
+			/* I need to make two css styles. one is for when the data cells are empty, to take on a white background, or "empty" background color. I think I'll need some kind of check for .textContent = "" or "---" then className = no-data. if false (meaning there is a number string present) then class name with be tax-data or income-data */
+
+			/* I can also make a focus row, being the highest bracket row which actually has data, to show people that this is their highest bracket and where they have to look to see the most recent changes to their data */ 
+			/* style the taxes you pay in each bracket */
+			.no-tax-data {
+				background-color: rgba(240, 180, 40, 0.2);
+			}
+
+			.tax-data {
+				background-color: rgba(240, 180, 40, 0.8);
+			}
+			/* style the net income in each bracket */
+			.no-income-data {
+				background-color: rgba(40,240, 140, 0.2);
+			}
+
+			.income-data {
+				background-color: rgba(40,240, 140, 0.8);
+			}
+			/* style the empty cells in each braket */
+			.no-data {
+				background-color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='head-container'>
+			<div class=logo-box><strong class='tiss'>TISS</strong><br>TAXES</div>
+			<h1 class='page-title'>Tax Info. Super Simple</h1>
+		</div>
+		<div class='tax-box'>
+			<h2 class='page-name'>Taiwan Tax Calculator</h2>
+			<p class='label'>How much do you want to make?</p>
+			<input type='text' id='income' class='income'>
+			<input type='submit' id='submit' class='submit'>
+			<table>
+				<thead>
+					<tr class='table-head'>
+						<th>Income Range</th>
+						<th>Tax %</th>
+						<th>Max Gross Income</th>
+						<th>Tax Amount</th>
+						<th>Net Income</th>
+					</tr>
+				</thead>
+				<tbody class='table-info'>
+					<tr>
+						<td>0 - 540,000</td>
+						<td>5%</td>
+						<td id='firstGrossIncome'>540000</td>
+						<td id='firstNetTax' class='no-tax-data'></td>
+						<td id='firstNetIncome' class='no-income-data'></td>
+					</tr>
+					<tr>
+						<td>540,001 - 1,210,000</td>
+						<td>12%</td>
+						<td id='secondGrossIncome'>670000</td>
+						<td id='secondNetTax' class='no-tax-data'></td>
+						<td id='secondNetIncome' class='no-income-data'></td>
+					</tr>
+					<tr>
+						<td>1,210,001 - 2,420,000</td>
+						<td>20%</td>
+						<td id='thirdGrossIncome'>1210000</td>
+						<td id='thirdNetTax' class='no-tax-data'></td>
+						<td id='thirdNetIncome' class='no-income-data'></td>
+					</tr>
+					<tr>
+						<td>2,420,001 - 4,530,000</td>
+						<td>30%</td>
+						<td id='fourthGrossIncome'>2110000</td>
+						<td id='fourthNetTax' class='no-tax-data'></td>
+						<td id='fourthNetIncome' class='no-income-data'></td>
+					</tr>
+					<tr>
+						<td>4,530,001 - 10,310,000</td>
+						<td>40%</td>
+						<td id='fifthGrossIncome'>5780000</td>
+						<td id='fifthNetTax' class='no-tax-data'></td>
+						<td id='fifthNetIncome'class='no-income-data'></td>
+					</tr>
+					<tr>
+						<td>10,310,001 and over</td>
+						<td>45%</td>
+						<td id='sixthGrossIncome'></td>
+						<td id='sixthNetTax' class='no-tax-data'></td>
+						<td id='sixthNetIncome'class='no-income-data'></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- I don't know if the JS script is better in the body tag or the head tag !-->
+		<script src="taxCalculatorScript.js"></script>
+	</body>
+</html>
