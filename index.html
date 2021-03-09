@@ -5,49 +5,83 @@
 		<style>
 
 
-			/* style the header */
-			.head-container {
-				position:relative;
-				text-align:center;
+			/* STYLE THE HEADER SECTION */
+			.head-flex-container {
+				display:flex;
+				flex-wrap:wrap;
+				justify-content:space-around;
 				background-color: blue;
-
+				border: 2px green solid;
 			}
 
 			.logo-box {
-				position:relative;
-				margin:auto;
-				top:10px;
 				border: 2px solid black;
 				width:100px;
 				height:100px;
-				text-align:center;
+				text-align: center;
 			}
 
 			.tiss{
 				font-size:2em;
 			}
 
-			.page-title {
-				background-color: green;
-				line-height:3em;
+
+			/* STYLE THE BODY SECTION */
+			.body-flex-container {
+				display: flex;
+				flex-flow:column;
+				justify-content: space-around;
+				align-items: center;
+				border: 2px red solid;
+				font-family: Helvetica;
+			}
+			.body-text {
+				text-align: center;
 			}
 
-			
+			.income {
+				width:225px;
+				height:50px;
+				font-size: 2em;
+				margin-bottom:15px;
+			}
+			}
+			.submit {
+				margin-bottom:15px;
+			}
 
-			/* style the table */
+			/* STYLE THE TAX AND CURRENCY CONTAINERS */
+			.flex-container {
+				display: flex;
+				flex-wrap:wrap;
+				justify-content:space-around;
+				border: 2px black solid;
+				font-family: Helvetica;
+			}
+
+			.flex-item {
+				margin:10px;
+				width: 350px;
+				min-width:350px;
+			}
 
 			.tax-box {
 				position:relative;
-				width:40%;
-				margin-left:20px;
-				font-family: Helvetica;
-				border: 2px solid black;
-				padding-left:5px;
-				padding-right:5px;
+				width: 350px;
+				border: 2px black solid;
 			}
 
-			.page-name {
+			.currency-box {
+				width: 350px;
+				min-height:300px;
+				border: 2px black solid;
+			}
+
+
+			/* STYLE THE TAX TABLE  */
+			.table-title {
 				text-align:center;
+				font-family: Helvetica;
 				font-size:2em;
 				line-height:2em;
 				background-color: rgba(50,50,200,0.8);
@@ -58,29 +92,12 @@
 			}
 
 			.table-info {
-				background-color:rgba(200,200,200,0.8);
+				background-color:rgba(220,220,220,0.6);
 				text-align:right;
 			}
 
-			.label {
-				text-align:center;
-			}
-			.income {
-				position:relative;
-				left:25%;
-				line-height:2em;
-				margin-bottom:15px;
-				width: 50%;
-			}
-			.submit {
-				width: 100%;
-				font-size:2em;
-				margin-bottom:15px;
-			}
-			/* I need to make two css styles. one is for when the data cells are empty, to take on a white background, or "empty" background color. I think I'll need some kind of check for .textContent = "" or "---" then className = no-data. if false (meaning there is a number string present) then class name with be tax-data or income-data */
-
-			/* I can also make a focus row, being the highest bracket row which actually has data, to show people that this is their highest bracket and where they have to look to see the most recent changes to their data */ 
-			/* style the taxes you pay in each bracket */
+	
+			/* STYLE THE DYNAMIC TAX DATA CHANGES */
 			.no-tax-data {
 				background-color: rgba(240, 180, 40, 0.2);
 			}
@@ -88,7 +105,8 @@
 			.tax-data {
 				background-color: rgba(240, 180, 40, 0.8);
 			}
-			/* style the net income in each bracket */
+
+			/* STYLE THE DYNAMIC NET INCOME DATA CHANGES */
 			.no-income-data {
 				background-color: rgba(40,240, 140, 0.2);
 			}
@@ -96,77 +114,86 @@
 			.income-data {
 				background-color: rgba(40,240, 140, 0.8);
 			}
-			/* style the empty cells in each braket */
-			.no-data {
-				background-color: white;
-			}
 		</style>
 	</head>
 	<body>
-		<div class='head-container'>
-			<div class=logo-box><strong class='tiss'>TISS</strong><br>TAXES</div>
-			<h1 class='page-title'>Tax Info. Super Simple</h1>
+		<div class='head-flex-container'>
+			<div class='logo-box flex-head-item' ><strong class='tiss'>TISS</strong><br>TAXES</div>
 		</div>
-		<div class='tax-box'>
-			<h2 class='page-name'>Taiwan Tax Calculator</h2>
-			<p class='label'>How much do you want to make?</p>
-			<input type='text' id='income' class='income'>
-			<input type='submit' id='submit' class='submit'>
-			<table>
-				<thead>
-					<tr class='table-head'>
-						<th>Income Range</th>
-						<th>Tax %</th>
-						<th>Max Gross Income</th>
-						<th>Tax Amount</th>
-						<th>Net Income</th>
-					</tr>
-				</thead>
-				<tbody class='table-info'>
-					<tr>
-						<td>0 - 540,000</td>
-						<td>5%</td>
-						<td id='firstGrossIncome'>540000</td>
-						<td id='firstNetTax' class='no-tax-data'></td>
-						<td id='firstNetIncome' class='no-income-data'></td>
-					</tr>
-					<tr>
-						<td>540,001 - 1,210,000</td>
-						<td>12%</td>
-						<td id='secondGrossIncome'>670000</td>
-						<td id='secondNetTax' class='no-tax-data'></td>
-						<td id='secondNetIncome' class='no-income-data'></td>
-					</tr>
-					<tr>
-						<td>1,210,001 - 2,420,000</td>
-						<td>20%</td>
-						<td id='thirdGrossIncome'>1210000</td>
-						<td id='thirdNetTax' class='no-tax-data'></td>
-						<td id='thirdNetIncome' class='no-income-data'></td>
-					</tr>
-					<tr>
-						<td>2,420,001 - 4,530,000</td>
-						<td>30%</td>
-						<td id='fourthGrossIncome'>2110000</td>
-						<td id='fourthNetTax' class='no-tax-data'></td>
-						<td id='fourthNetIncome' class='no-income-data'></td>
-					</tr>
-					<tr>
-						<td>4,530,001 - 10,310,000</td>
-						<td>40%</td>
-						<td id='fifthGrossIncome'>5780000</td>
-						<td id='fifthNetTax' class='no-tax-data'></td>
-						<td id='fifthNetIncome'class='no-income-data'></td>
-					</tr>
-					<tr>
-						<td>10,310,001 and over</td>
-						<td>45%</td>
-						<td id='sixthGrossIncome'></td>
-						<td id='sixthNetTax' class='no-tax-data'></td>
-						<td id='sixthNetIncome'class='no-income-data'></td>
-					</tr>
-				</tbody>
-			</table>
+		<div class='body-flex-container'>
+			<div>
+				<h1 class='body-text'>Tax Info Super Simple</h1>
+				<p class='body-text'>Taiwan has a tiered tax system, so you pay more taxes as you earn more money. Taxes are pretty low in Taiwan but they get pretty high when you start earning the big bucks. This calculator will give you an idea of what you can expect to earn at any income level. </p>
+				<p class='body-text'>Just pick a number, press calculate, and see what happens.</p>
+				
+			</div>
+			
+		</div>
+		<div class='flex-container'>
+			<div class='tax-box flex-item'>
+				<h2 class='table-title'>Taxes in Taiwan</h2>
+				<input type='text' id='income' class='income page-title'>
+				<button id='submit' class='submit page-title'>Calculate</button>
+				<table>
+					<thead class='table-head'>
+						<tr >
+							<th>Income Range</th>
+							<th>Tax %</th>
+							<th class='gross-data'>Gross Income</th>
+							<th class='tax-data'>Tax Amount</th>
+							<th class='income-data'>Net Income</th>
+						</tr>
+					</thead>
+					<tbody class='table-info'>
+						<tr>
+							<td>0 - 540,000</td>
+							<td>5%</td>
+							<td id='firstGrossIncome'></td>
+							<td id='firstNetTax' class='no-tax-data'></td>
+							<td id='firstNetIncome' class='no-income-data'></td>
+						</tr>
+						<tr>
+							<td>540,001 - 1,210,000</td>
+							<td>12%</td>
+							<td id='secondGrossIncome'></td>
+							<td id='secondNetTax' class='no-tax-data'></td>
+							<td id='secondNetIncome' class='no-income-data'></td>
+						</tr>
+						<tr>
+							<td>1,210,001 - 2,420,000</td>
+							<td>20%</td>
+							<td id='thirdGrossIncome'></td>
+							<td id='thirdNetTax' class='no-tax-data'></td>
+							<td id='thirdNetIncome' class='no-income-data'></td>
+						</tr>
+						<tr>
+							<td>2,420,001 - 4,530,000</td>
+							<td>30%</td>
+							<td id='fourthGrossIncome'></td>
+							<td id='fourthNetTax' class='no-tax-data'></td>
+							<td id='fourthNetIncome' class='no-income-data'></td>
+						</tr>
+						<tr>
+							<td>4,530,001 - 10,310,000</td>
+							<td>40%</td>
+							<td id='fifthGrossIncome'></td>
+							<td id='fifthNetTax' class='no-tax-data'></td>
+							<td id='fifthNetIncome'class='no-income-data'></td>
+						</tr>
+						<tr>
+							<td>10,310,001 and over</td>
+							<td>45%</td>
+							<td id='sixthGrossIncome'></td>
+							<td id='sixthNetTax' class='no-tax-data'></td>
+							<td id='sixthNetIncome'class='no-income-data'></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class='flex-item currency-box'>
+				<h1 class='table-title'>Foreign Currency</h1>
+				<p>The currency converter will go here</p>
+			</div>
 		</div>
 
 		<!-- I don't know if the JS script is better in the body tag or the head tag !-->
