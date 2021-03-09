@@ -63,6 +63,21 @@ let tableIncomeArray = [
 ]
 
 //make an array for gross income variables
+const firstGrossIncome = document.getElementById('firstGrossIncome');
+const secondGrossIncome = document.getElementById('secondGrossIncome');
+const thirdGrossIncome = document.getElementById('thirdGrossIncome');
+const fourthGrossIncome = document.getElementById('fourthGrossIncome');
+const fifthGrossIncome = document.getElementById('fifthGrossIncome');
+const sixthGrossIncome = document.getElementById('sixthGrossIncome');
+
+let grossTableArray = [
+	firstGrossIncome,
+	secondGrossIncome,
+	thirdGrossIncome,
+	fourthGrossIncome,
+	fifthGrossIncome,
+	sixthGrossIncome,
+]
 
 // establish gross income variable for functions
 let grossIncome;
@@ -122,6 +137,7 @@ let firstBracket = function() {
 	//set table data content
 	firstTableTax.textContent = incomeTax;
 	firstTableNet.textContent = netIncome;
+	firstGrossIncome.textContent = grossIncome;
 	
 }
 
@@ -147,11 +163,14 @@ let secondBracket = function() {
 	//set table data content
 	for (i = 0; i < 1; i++) {
 		tableTaxArray[i].textContent = maxTaxArray[i];
-		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i]
+		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i];
+		grossTableArray[i].textContent = incomeRangeArray[i];
 	}
 
 	secondTableTax.textContent = secondIncomeTax;
 	secondTableNet.textContent = secondNetIncome;
+	secondGrossIncome.textContent = grossIncomeTwo;
+	
 	
 }
 
@@ -180,10 +199,12 @@ let thirdBracket = function() {
 	// set the table data content
 	for (i = 0; i < 2; i++) {
 		tableTaxArray[i].textContent = maxTaxArray[i];
-		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i]
+		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i];
+		grossTableArray[i].textContent = incomeRangeArray[i];
 	}
 	thirdTableTax.textContent = thirdIncomeTax;
 	thirdTableNet.textContent = netIncomeThree;
+	thirdGrossIncome.textContent = grossIncomeThree;
 
 }
 
@@ -216,11 +237,13 @@ let fourthBracket = function() {
 	// set the table data content
 	for (i = 0; i < 3; i++) {
 		tableTaxArray[i].textContent = maxTaxArray[i];
-		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i]
+		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i];
+		grossTableArray[i].textContent = incomeRangeArray[i];
 	}
 
 	fourthTableTax.textContent = fourthIncomeTax;
 	fourthTableNet.textContent = netIncomeFour;
+	fourthGrossIncome.textContent = grossIncomeFour;
 
 }
 
@@ -262,11 +285,13 @@ let fifthBracket = function() {
 	// set the table data content
 	for (i = 0; i < 4; i++) {
 		tableTaxArray[i].textContent = maxTaxArray[i];
-		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i]
+		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i];
+		grossTableArray[i].textContent = incomeRangeArray[i];
 	}
 
 	fifthTableTax.textContent = fifthIncomeTax;
 	fifthTableNet.textContent = fifthNetIncome;
+	fifthGrossIncome.textContent = grossIncomeFive;
 
 }
 
@@ -280,6 +305,7 @@ let sixthBracket = function() {
 	let grossIncomeFour = fourthRange;
 	let grossIncomeFive = fifthRange;
 	let grossIncomeSix = grossIncome - fifthRange - fourthRange - thirdRange - secondRange - firstRange;
+	
 
 	//tax at each bracket
 	let firstIncomeTax = firstTaxMax;
@@ -314,28 +340,23 @@ let sixthBracket = function() {
 	//but I would need variables and arrays for the calculations
 	for (i = 0; i < 5; i++) {
 		tableTaxArray[i].textContent = maxTaxArray[i];
-		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i]
+		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i];
+		grossTableArray[i].textContent = incomeRangeArray[i];
 	}
 	
 	sixthTableTax.textContent = sixthIncomeTax;
 	sixthTableNet.textContent = netIncomeSix;
+	sixthGrossIncome.textContent = grossIncomeSix;
 
 }
-
-/*
-//set the styling for the table tax and income cells
-for (i = 0; i < tableTaxArray; i++) {
-	if (tableTaxArray[i].textContent === '') {
-		tableTaxArray[i].className = 'no-data';
-	} else {
-		tableTaxArray[i].className = 'tax-data';
-
-	}
-}
-*/
 
 //function to call tax functions on click
 let chooseFunction = function(whichFunctions) {
+	//all of these for loops can be put into one 
+	//as long as each is equal in length.
+	//but before I do I want to find out if
+	//I should make an object with properties for each of these. 
+
 	//reset the paragraph content
 	for (i = 0; i < paragraphArray.length; i++) {
 		paragraphArray[i].textContent = '';
@@ -347,6 +368,10 @@ let chooseFunction = function(whichFunctions) {
 	//reset the table net income data
 	for (i = 0; i < tableIncomeArray.length; i++) {
 		tableIncomeArray[i].textContent = '';
+	}
+	//reset the table gross income data
+	for (i = 0; i < grossTableArray.length; i++) {
+		grossTableArray[i].textContent = '';
 	}
 	/* this is code for changing the class names. I don't think
 	it belongs here but I'm storing it here anyways.
@@ -381,6 +406,8 @@ let chooseFunction = function(whichFunctions) {
 	//and affect both tax and income data cells
 	//I think this means that I probably need to make an array of objects
 	//this would let me hold multiple tax and net income and even range values for each bracket
+	//note that I am using the length of the tax array
+	//to loop through both the tax array and the net income array
 	for (i = 0; i < tableTaxArray.length; i++) {
 		if (tableTaxArray[i].textContent !== '') {
 			tableTaxArray[i].className = 'tax-data'
@@ -391,6 +418,7 @@ let chooseFunction = function(whichFunctions) {
 		}
 	}
 
+	/*
 	//append paragraphs.
 	document.body.appendChild(paraOne);
 	document.body.appendChild(paraTwo);
@@ -399,6 +427,7 @@ let chooseFunction = function(whichFunctions) {
 	document.body.appendChild(paraFive);
 	document.body.appendChild(paraSix);
 	document.body.appendChild(paraNet);
+	*/
 }	
 
 submit.addEventListener('click', chooseFunction);
