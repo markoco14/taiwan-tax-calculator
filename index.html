@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 	<head>
 		<meta charset='utf-8'>
+		<meta name='viewport' content='width=device-width initial-scale=1.0'>
 		<title>Taiwan Tax</title>
 		<style>
 
+			body {
+				margin:0px;
+				padding:0px;
+			}
 
 			/* STYLE THE HEADER SECTION */
 			.head-flex-container {
 				display:flex;
-				flex-wrap:wrap;
-				justify-content:space-around;
-				background-color: blue;
-				border: 2px green solid;
+				justify-content:center;
+				align-items:center;
+				background-color: #7BBAEB;
+				color: white;
 			}
 
-			.logo-box {
-				border: 2px solid black;
-				width:100px;
-				height:100px;
-				text-align: center;
+			.head-flex-item {
+				/* don't know what to put in here */
 			}
 
-			.tiss{
-				font-size:2em;
-			}
+
+
 
 
 			/* STYLE THE BODY SECTION */
-			.body-flex-container {
-				display: flex;
-				flex-flow:column;
-				justify-content: space-around;
-				align-items: center;
-				border: 2px red solid;
+			.sub-container {
 				font-family: Helvetica;
+
 			}
-			.body-text {
+			.sub-text {
 				text-align: center;
 			}
 
@@ -45,7 +42,7 @@
 				font-size: 2em;
 				margin-bottom:15px;
 			}
-			}
+
 			.submit {
 				margin-bottom:15px;
 			}
@@ -55,26 +52,33 @@
 				display: flex;
 				flex-wrap:wrap;
 				justify-content:space-around;
-				border: 2px black solid;
 				font-family: Helvetica;
+				background-color:#7BBAEB;
 			}
 
 			.flex-item {
+				border: 1px solid rgb(185,185,185);
+				border-radius:3px;
 				margin:10px;
 				width: 350px;
 				min-width:350px;
 			}
 
 			.tax-box {
-				position:relative;
 				width: 350px;
-				border: 2px black solid;
+				border-radius:2px;
+				box-shadow: 5px 5px 2px rgb(98,143,178);
+				padding:5px;
+				background-color:rgb(255,255,255);
 			}
 
 			.currency-box {
 				width: 350px;
 				min-height:300px;
-				border: 2px black solid;
+				border-radius:2px;
+				box-shadow: 5px 5px 2px rgb(98,143,178);
+				padding:5px;
+				background-color:rgb(255,255,255);
 			}
 
 
@@ -84,15 +88,15 @@
 				font-family: Helvetica;
 				font-size:2em;
 				line-height:2em;
-				background-color: rgba(50,50,200,0.8);
 			}
 			.table-head {
-				background-color: rgba(50,50,200,0.8);
+				/*background-color: rgba(50,50,200,0.8);*/
 				text-align:center;
+				border-bottom:2px solid black;
 			}
 
 			.table-info {
-				background-color:rgba(220,220,220,0.6);
+				/*background-color:rgba(220,220,220,0.6);*/
 				text-align:right;
 			}
 
@@ -118,25 +122,23 @@
 	</head>
 	<body>
 		<div class='head-flex-container'>
-			<div class='logo-box flex-head-item' ><strong class='tiss'>TISS</strong><br>TAXES</div>
+			<h1>TISS</h1>
+			<h2>taxes</h2>
 		</div>
-		<div class='body-flex-container'>
-			<div>
-				<h1 class='body-text'>Tax Info Super Simple</h1>
-				<p class='body-text'>Taiwan has a tiered tax system, so you pay more taxes as you earn more money. Taxes are pretty low in Taiwan but they get pretty high when you start earning the big bucks. This calculator will give you an idea of what you can expect to earn at any income level. </p>
-				<p class='body-text'>Just pick a number, press calculate, and see what happens.</p>
-				
-			</div>
+		<div class='sub-container'>
+			<!-- <h1 class='body-text'>Tax Info Super Simple</h1> -->
+			<p class='sub-text'>Choose your salary. Know your taxes.</p>
+		</div>
 			
-		</div>
+		
 		<div class='flex-container'>
 			<div class='tax-box flex-item'>
-				<h2 class='table-title'>Taxes in Taiwan</h2>
+				<h2 class='table-title'>Tax Calculator</h2>
 				<input type='text' id='income' class='income page-title'>
 				<button id='submit' class='submit page-title'>Calculate</button>
 				<table>
-					<thead class='table-head'>
-						<tr >
+					<thead>
+						<tr class='table-head'>
 							<th>Income Range</th>
 							<th>Tax %</th>
 							<th class='gross-data'>Gross Income</th>
@@ -146,42 +148,42 @@
 					</thead>
 					<tbody class='table-info'>
 						<tr>
-							<td>0 - 540,000</td>
+							<td>540,000</td>
 							<td>5%</td>
 							<td id='firstGrossIncome'></td>
 							<td id='firstNetTax' class='no-tax-data'></td>
 							<td id='firstNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td>540,001 - 1,210,000</td>
+							<td>1,210,000</td>
 							<td>12%</td>
 							<td id='secondGrossIncome'></td>
 							<td id='secondNetTax' class='no-tax-data'></td>
 							<td id='secondNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td>1,210,001 - 2,420,000</td>
+							<td>2,420,000</td>
 							<td>20%</td>
 							<td id='thirdGrossIncome'></td>
 							<td id='thirdNetTax' class='no-tax-data'></td>
 							<td id='thirdNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td>2,420,001 - 4,530,000</td>
+							<td>4,530,000</td>
 							<td>30%</td>
 							<td id='fourthGrossIncome'></td>
 							<td id='fourthNetTax' class='no-tax-data'></td>
 							<td id='fourthNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td>4,530,001 - 10,310,000</td>
+							<td>10,310,000 </td>
 							<td>40%</td>
 							<td id='fifthGrossIncome'></td>
 							<td id='fifthNetTax' class='no-tax-data'></td>
 							<td id='fifthNetIncome'class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td>10,310,001 and over</td>
+							<td>10,310,001 + </td>
 							<td>45%</td>
 							<td id='sixthGrossIncome'></td>
 							<td id='sixthNetTax' class='no-tax-data'></td>
