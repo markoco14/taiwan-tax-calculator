@@ -122,6 +122,9 @@ let maxTaxArray = [
 	fourthTaxMax,
 	fifthTaxMax,
 ]
+//intitalize totalTax and totalIncome variables
+const totalTax = document.getElementById('total-tax')
+const totalIncome = document.getElementById('total-income')
 
 // write function for income <= 540000
 let firstBracket = function() {
@@ -139,6 +142,9 @@ let firstBracket = function() {
 	firstTableNet.textContent = netIncome;
 	firstGrossIncome.textContent = grossIncome;
 	
+
+	totalTax.textContent = incomeTax;
+	totalIncome.textContent = netIncome;
 }
 
 // write function for 540000 < income <= 1210000
@@ -171,7 +177,9 @@ let secondBracket = function() {
 	secondTableNet.textContent = secondNetIncome;
 	secondGrossIncome.textContent = grossIncomeTwo;
 	
-	
+	totalTax.textContent = firstIncomeTax + secondIncomeTax;
+	totalIncome.textContent = firstNetIncome + secondNetIncome;
+
 }
 
 let thirdBracket = function() {
@@ -206,6 +214,9 @@ let thirdBracket = function() {
 	thirdTableNet.textContent = netIncomeThree;
 	thirdGrossIncome.textContent = grossIncomeThree;
 
+	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax;
+	totalIncome.textContent = netIncome;
+
 }
 
 let fourthBracket = function() {
@@ -217,9 +228,9 @@ let fourthBracket = function() {
 	let grossIncomeFour = grossIncome - thirdRange - secondRange - firstRange;
 	//find the total taxes in each bracket
 	let firstIncomeTax = firstTaxMax;
-		let secondIncomeTax = secondTaxMax;
-		let thirdIncomeTax = thirdTaxMax;
-		let fourthIncomeTax = grossIncomeFour * fourthTaxRate;
+	let secondIncomeTax = secondTaxMax;
+	let thirdIncomeTax = thirdTaxMax;
+	let fourthIncomeTax = grossIncomeFour * fourthTaxRate;
 	//find the net income in each bracket
 	let netIncomeOne = firstRange - firstTaxMax;
 	let netIncomeTwo = secondRange - secondTaxMax;
@@ -245,6 +256,8 @@ let fourthBracket = function() {
 	fourthTableNet.textContent = netIncomeFour;
 	fourthGrossIncome.textContent = grossIncomeFour;
 
+	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax;
+	totalIncome.textContent = netIncome;
 }
 
 //function for the fifth tax bracket
@@ -292,6 +305,10 @@ let fifthBracket = function() {
 	fifthTableTax.textContent = fifthIncomeTax;
 	fifthTableNet.textContent = fifthNetIncome;
 	fifthGrossIncome.textContent = grossIncomeFive;
+
+	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax 
+							+ fourthIncomeTax + fifthIncomeTax;
+	totalIncome.textContent = netIncome;
 
 }
 
@@ -348,6 +365,10 @@ let sixthBracket = function() {
 	sixthTableNet.textContent = netIncomeSix;
 	sixthGrossIncome.textContent = grossIncomeSix;
 
+	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax 
+							+ fourthIncomeTax + fifthIncomeTax + sixthIncomeTax;
+	totalIncome.textContent = netIncome;
+
 }
 
 //function to call tax functions on click
@@ -383,7 +404,18 @@ let chooseFunction = function(whichFunctions) {
 		}
 	} */
 
-	//reset the empty cell styling
+	//reset total tax and income
+	totalTax.textContent = '';
+	totalIncome.textContent = '';
+
+	//reset the conversion tax and income
+	
+	foreignTax.textContent = '';
+	foreignIncome.textContent = '';
+	foreignTax.className = '';
+	foreignIncome.className = '';
+	select.value = '';
+	
 
 	grossIncome = input.value;
 	if (grossIncome < 540001) {
