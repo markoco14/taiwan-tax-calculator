@@ -37,13 +37,13 @@
 			}
 
 			.income {
-				width:225px;
-				height:50px;
-				font-size: 2em;
-				margin-bottom:15px;
+				padding:10px;
+				text-align: center;
+				margin-bottom:0;
 			}
 
 			.submit {
+				padding: 10px;
 				margin-bottom:15px;
 			}
 
@@ -61,26 +61,27 @@
 				border-radius:3px;
 				margin:10px;
 				width: 350px;
+				min-height:300px;
 				min-width:350px;
+				box-shadow: 5px 5px 2px rgb(98,143,178);
+				padding:5px;
+				background-color:rgb(255,255,255);
+			}
+
+			.total-container {
+				display:flex;
+				justify-content:space-between;
 			}
 
 			.tax-box {
-				width: 350px;
-				border-radius:2px;
-				box-shadow: 5px 5px 2px rgb(98,143,178);
-				padding:5px;
-				background-color:rgb(255,255,255);
+				display: flex;
+				flex-direction: column;
 			}
 
 			.currency-box {
-				width: 350px;
-				min-height:300px;
-				border-radius:2px;
-				box-shadow: 5px 5px 2px rgb(98,143,178);
-				padding:5px;
-				background-color:rgb(255,255,255);
+				
+			
 			}
-
 
 			/* STYLE THE TAX TABLE  */
 			.table-title {
@@ -98,6 +99,10 @@
 			.table-info {
 				/*background-color:rgba(220,220,220,0.6);*/
 				text-align:right;
+			}
+
+			.table-range {
+				text-align: center;
 			}
 
 	
@@ -134,6 +139,12 @@
 		<div class='flex-container'>
 			<div class='tax-box flex-item'>
 				<h2 class='table-title'>Tax Calculator</h2>
+				<div class=total-container>
+					<p>Total Taxes</p>
+					<p id='total-tax'></p>
+					<p>Total Income</p>
+					<p id='total-income'></p>
+				</div>
 				<input type='text' id='income' class='income page-title'>
 				<button id='submit' class='submit page-title'>Calculate</button>
 				<table>
@@ -141,49 +152,49 @@
 						<tr class='table-head'>
 							<th>Income Range</th>
 							<th>Tax %</th>
-							<th class='gross-data'>Gross Income</th>
-							<th class='tax-data'>Tax Amount</th>
-							<th class='income-data'>Net Income</th>
+							<th class='gross-data'>Salary</th>
+							<th class='tax-data'>Taxes</th>
+							<th class='income-data'>After Tax</th>
 						</tr>
 					</thead>
 					<tbody class='table-info'>
 						<tr>
-							<td>540,000</td>
+							<td class='table-range'>0 <= 540,000</td>
 							<td>5%</td>
 							<td id='firstGrossIncome'></td>
 							<td id='firstNetTax' class='no-tax-data'></td>
 							<td id='firstNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td>1,210,000</td>
+							<td class='table-range'>540,001 <= 1,210,000</td>
 							<td>12%</td>
 							<td id='secondGrossIncome'></td>
 							<td id='secondNetTax' class='no-tax-data'></td>
 							<td id='secondNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td>2,420,000</td>
+							<td class='table-range'>1210001 <= 2,420,000</td>
 							<td>20%</td>
 							<td id='thirdGrossIncome'></td>
 							<td id='thirdNetTax' class='no-tax-data'></td>
 							<td id='thirdNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td>4,530,000</td>
+							<td class='table-range'>2420001 <= 4,530,000</td>
 							<td>30%</td>
 							<td id='fourthGrossIncome'></td>
 							<td id='fourthNetTax' class='no-tax-data'></td>
 							<td id='fourthNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td>10,310,000 </td>
+							<td class='table-range'>4530001 <= 10,310,000 </td>
 							<td>40%</td>
 							<td id='fifthGrossIncome'></td>
 							<td id='fifthNetTax' class='no-tax-data'></td>
 							<td id='fifthNetIncome'class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td>10,310,001 + </td>
+							<td class='table-range'>10,310,001+ </td>
 							<td>45%</td>
 							<td id='sixthGrossIncome'></td>
 							<td id='sixthNetTax' class='no-tax-data'></td>
@@ -193,12 +204,33 @@
 				</table>
 			</div>
 			<div class='flex-item currency-box'>
-				<h1 class='table-title'>Foreign Currency</h1>
-				<p>The currency converter will go here</p>
+				<h1 class='table-title'>Currency Exchange</h1>
+				<select id='select-currency'>
+					<option value=''>--Choose your currency--</option>
+					<option value='CAD'>Canadian</option>
+					<option value='USD'>US</option>
+					<option value='AUD'>Australian</option>
+					<option value='EUR'>Euro</option>
+					<option value='GBP'>British</option>
+					<option value='NZD'>New Zealand</option>
+				</select>
+				<p>Your income is (currency dollars) is</p>
+				<p id='exchange-income'></p>
+				<p>Your taxes in (currency dollars) is</p>
+				<p id='exchange-tax'></p>
+				<button id='convert'>convert</button>
+
 			</div>
+		</div> <!--//end of calculator and currency exchange container -->
+
+		<div id='footer'>
+			<p>TISS Taxes</p>
+			<p>Tax info super simple</p>
+			<p></p>
 		</div>
 
 		<!-- I don't know if the JS script is better in the body tag or the head tag !-->
+		<script src='exchangeScripts.js'></script>
 		<script src="taxCalculatorScript.js"></script>
 	</body>
 </html>
