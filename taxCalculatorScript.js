@@ -415,6 +415,8 @@ let chooseFunction = function(whichFunctions) {
 	foreignTax.className = '';
 	foreignIncome.className = '';
 	select.value = '';
+	yourIncome.textContent = '';
+	yourTax.textContent = '';
 	
 
 	grossIncome = input.value;
