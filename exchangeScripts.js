@@ -20,6 +20,9 @@
 const foreignTax = document.getElementById('exchange-tax');
 const foreignIncome = document.getElementById('exchange-income');
 
+const yourTax = document.getElementById('your-tax');
+const yourIncome = document.getElementById('your-income');
+
 //make a variable to reference selector
 const select = document.getElementById('select-currency');
 
@@ -77,53 +80,85 @@ let changeCurrency = function() {
 			//convert the taxes
 			cadTax = correctedTax * currencyData.rates.CAD;
 			foreignTax.textContent = Math.floor(cadTax);
+			yourTax.textContent = 'Canadian dollars'
 			//convert the income
 			cadIncome = correctedIncome *currencyData.rates.CAD;
 			foreignIncome.textContent = Math.floor(cadIncome);
+			yourIncome.textContent = 'Canadian dollars'
+			//set the classes
+			foreignTax.className = 'tax-data'
+			foreignIncome.className = 'income-data'
 			break;
 		case('USD'):
 			//convert the taxes
 			usdTax = correctedTax * currencyData.rates.USD;
 			foreignTax.textContent = Math.floor(usdTax);
+			yourTax.textContent = 'American dollars'
 			//convert the income
 			usdIncome = correctedIncome * currencyData.rates.USD;
 			foreignIncome.textContent = Math.floor(usdIncome);
+			yourIncome.textContent = 'American dollars'
+			//set the classes
+			foreignTax.className = 'tax-data'
+			foreignIncome.className = 'income-data'
 			break;
 		case('AUD'):
 			//convert the taxes
 			audTax = correctedTax * currencyData.rates.AUD;
 			foreignTax.textContent = Math.floor(audTax);
+			yourTax.textContent = 'Australian dollars'
 			//convert the income
 			audIncome = correctedIncome * currencyData.rates.AUD;
 			foreignIncome.textContent = Math.floor(audIncome);
+			yourIncome.textContent = 'Australian dollars'
+			//set the classes
+			foreignTax.className = 'tax-data'
+			foreignIncome.className = 'income-data'
 			break;
 		case('EUR'): //Note the european exchange rate is 1.
 			//convert the taxes
 			eurTax = correctedTax * currencyData.rates.EUR;
 			foreignTax.textContent = Math.floor(eurTax);
+			yourTax.textContent = 'Euros'
 			//convert the income
 			eurIncome = correctedIncome * currencyData.rates.EUR;
 			foreignIncome.textContent = Math.floor(eurIncome);
+			yourIncome.textContent = 'Euros'
+			//set the classes
+			foreignTax.className = 'tax-data'
+			foreignIncome.className = 'income-data'
 			break;
 		case('GBP'):
 			//convert the taxes
 			gbpTax = correctedTax * currencyData.rates.GBP;
 			foreignTax.textContent = Math.floor(gbpTax);
+			yourTax.textContent = 'British pounds'
 			//convert the income
 			gbpIncome = correctedIncome * currencyData.rates.GBP;
 			foreignIncome.textContent = Math.floor(gbpIncome);
+			yourIncome.textContent = 'British pounds'
+			//set the classes
+			foreignTax.className = 'tax-data'
+			foreignIncome.className = 'income-data'
 			break;
 		case('NZD'):
 			//convert the taxes
 			nzdTax = correctedTax * currencyData.rates.NZD;
 			foreignTax.textContent = Math.floor(nzdTax);
+			yourTax.textContent = 'New Zealand dollars'
 			//convert the income
 			nzdIncome = correctedIncome * currencyData.rates.NZD;
 			foreignIncome.textContent = Math.floor(nzdIncome);
+			yourIncome.textContent = 'New Zealand dollars'
+			//set the classes
+			foreignTax.className = 'tax-data'
+			foreignIncome.className = 'income-data'
 			break;
 		default:
 			foreignTax.textContent = '';
 			foreignIncome.textContent = '';
+			foreignTax.className = ''
+			foreignIncome.className = ''
 
 	}
 }
