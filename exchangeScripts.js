@@ -61,13 +61,13 @@ let changeCurrency = function() {
 	foreignTax.textContent = totalTax.textContent;
 	taxToNumber = Number(foreignTax.textContent);
 	correctedTax = taxToNumber * 1/currencyData.rates.TWD; //this is EUR
-	console.log(correctedTax);
+	console.log(`Your tax converted from TWD to EUR is ${correctedTax}`);
 
 	//initialize the income variables
 	foreignIncome.textContent = totalIncome.textContent;
 	incomeToNumber = Number(foreignIncome.textContent);
 	correctedIncome = incomeToNumber * 1/currencyData.rates.TWD; //this is EUR
-	console.log(correctedIncome);
+	console.log(`Your income coverted from TWD to EUR is ${correctedIncome}`);
 
 	const choice = select.value
 	//now I need to make that switch
@@ -133,7 +133,7 @@ let changeCurrency = function() {
 // Create a request variable and assign a new XMLHttpRequest object to it.
 var request = new XMLHttpRequest()
 // Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'http://data.fixer.io/api/latest?access_key=cac7427a8803af6ebbc1a4dfdb81d43c', true)
+request.open('GET', 'https://api.exchangerate.host/latest', true)
 // Make .onload and access function?
 request.onload = function() {
 	//parse resonse
