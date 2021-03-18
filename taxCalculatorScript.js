@@ -145,6 +145,9 @@ let firstBracket = function() {
 
 	totalTax.textContent = incomeTax;
 	totalIncome.textContent = netIncome;
+	totalTax.className = 'tax-data'
+	totalIncome.className = 'income-data'
+
 }
 
 // write function for 540000 < income <= 1210000
@@ -179,6 +182,8 @@ let secondBracket = function() {
 	
 	totalTax.textContent = firstIncomeTax + secondIncomeTax;
 	totalIncome.textContent = firstNetIncome + secondNetIncome;
+	totalTax.className = 'tax-data'
+	totalIncome.className = 'income-data'
 
 }
 
@@ -216,6 +221,9 @@ let thirdBracket = function() {
 
 	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax;
 	totalIncome.textContent = netIncome;
+	totalTax.className = 'tax-data'
+	totalIncome.className = 'income-data'
+
 
 }
 
@@ -258,6 +266,9 @@ let fourthBracket = function() {
 
 	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax;
 	totalIncome.textContent = netIncome;
+	totalTax.className = 'tax-data'
+	totalIncome.className = 'income-data'
+
 }
 
 //function for the fifth tax bracket
@@ -309,6 +320,9 @@ let fifthBracket = function() {
 	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax 
 							+ fourthIncomeTax + fifthIncomeTax;
 	totalIncome.textContent = netIncome;
+	totalTax.className = 'tax-data'
+	totalIncome.className = 'income-data'
+
 
 }
 
@@ -368,6 +382,9 @@ let sixthBracket = function() {
 	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax 
 							+ fourthIncomeTax + fifthIncomeTax + sixthIncomeTax;
 	totalIncome.textContent = netIncome;
+	totalTax.className = 'tax-data'
+	totalIncome.className = 'income-data'
+
 
 }
 
@@ -407,6 +424,8 @@ let chooseFunction = function(whichFunctions) {
 	//reset total tax and income
 	totalTax.textContent = '';
 	totalIncome.textContent = '';
+	totalTax.className = '';
+	totalIncome.className = '';
 
 	//reset the conversion tax and income
 	
