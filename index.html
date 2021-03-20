@@ -25,15 +25,17 @@
 				width:100vw;
 				height:75vh;
 				object-fit: cover;
+
 				
 			}
 			.name-container {
 				width:70%;
 				position:absolute;
-				background-color: rgba(130,130,130,0.3);
+				background-color: rgba(130,130,130,0.5);
 				color: white;
 				border-radius:3px;
 				display:flex;
+				flex-direction:column;
 				justify-content:center;
 				align-items:center;
 			}
@@ -95,6 +97,7 @@
 
 
 			.tax-box {
+				position:relative;
 				display: flex;
 				flex-direction: column;
 				align-items:center;
@@ -102,6 +105,7 @@
 			}
 
 			.currency-box {
+				position:relative;
 				display:flex;
 				flex-direction:column;
 				justify-content:top;
@@ -117,9 +121,10 @@
 			}
 
 			.subscript {
+				position:absolute;
 				text-align:center;
 				font-size:8px;
-				margin-bottom:-5px;
+				bottom:0px;
 			}
 
 			/* STYLE THE TAX TABLE  */
@@ -173,6 +178,7 @@
 				display:flex;
 				width:100%;
 				justify-content:space-around;
+				margin-top:10px;
 			}
 
 			.flag-container {
@@ -190,6 +196,8 @@
 
 			.currency-selector {
 				width:100%;
+				margin-top:10px;
+				font-size:16px;
 			}
 		</style>
 	</head>
@@ -201,12 +209,10 @@
 			>
 			<div class='name-container'>
 				<h1>TISS</h1>
-				<h2>taxes</h2>
 			</div>
 		</div>
 		<div class='sub-container'>
-			<!-- <h1 class='body-text'>Tax Info Super Simple</h1> -->
-			<p class='sub-text'>Tax Info. Super Simple.</p>
+			<p class='body-text'>Tax info, super simple</p>
 		</div>
 			
 		
