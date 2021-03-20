@@ -13,6 +13,7 @@
 
 			/* STYLE THE HEADER SECTION */
 			.head-container {
+				font-family: arial;
 				position:relative;
 				display:flex;
 				justify-content:center;
@@ -31,7 +32,7 @@
 			.name-container {
 				width:70%;
 				position:absolute;
-				background-color: rgba(130,130,130,0.5);
+				background-color: rgba(30,30,30,0.5);
 				color: white;
 				border-radius:3px;
 				display:flex;
@@ -50,8 +51,10 @@
 
 			/* STYLE THE BODY SECTION */
 			.sub-container {
-				font-family: Helvetica;
-				height:25vh;
+				font-family: monospace;
+				font-size: 16px;
+				color:rgba(15,15,15,0.85);
+				height:150px;
 				display:flex;
 				justify-content: center;
 				align-items: center;
@@ -181,6 +184,11 @@
 				margin-top:10px;
 			}
 
+			.exchange-flex-bottom {
+				margin-top:-5px;
+				margin-bottom:10px;
+			}
+
 			.flag-container {
 				width:100%;
 				display:flex;
@@ -199,6 +207,17 @@
 				margin-top:10px;
 				font-size:16px;
 			}
+
+			/* style the footer */
+			.footer {
+				height:100px;
+				text-align:center;
+				color:white;
+				background-color:rgba(15,15,15,0.85);
+				margin-top:150px;
+				line-height:100px;
+
+			}
 		</style>
 	</head>
 	<body>
@@ -212,10 +231,9 @@
 			</div>
 		</div>
 		<div class='sub-container'>
-			<p class='body-text'>Tax info, super simple</p>
+				<p class='body-text'>Tax info, super simple</p>
 		</div>
 			
-		
 		<div class='flex-container'>
 			<div class='tax-box flex-item'>
 				<h2 class='table-title'>Tax Calculator</h2>
@@ -295,7 +313,7 @@
 				<img src=''
 					id='currency-flag'
 					class='selected-flag'>
-				<p> Choose your currency below to see how much your salary is worth in your home country </p>
+				<p> Choose your currency below to see how much your salary is worth in your home country. </p>
 
 				<div id='flag-bar' class='flag-container'>
 					<img src='images/flagCanada.png'
@@ -338,7 +356,7 @@
 					<p>Your income in <span id='your-income'></span>:</p>
 					<p id='exchange-income'></p>
 				</div>
-				<div  class='exchange-flex'>
+				<div  class='exchange-flex exchange-flex-bottom'>
 					<p>Your taxes in <span id='your-tax'></span>:</p>
 					<p id='exchange-tax'></p>
 				</div>
@@ -346,10 +364,8 @@
 			</div>
 		</div> <!--//end of calculator and currency exchange container -->
 
-		<div id='footer'>
-			<p>TISS Taxes</p>
-			<p>Tax info super simple</p>
-			<p></p>
+		<div class='footer'>
+			<p>TISS Taxes Tax Info Super Simple.</p>
 		</div>
 
 		<!-- I don't know if the JS script is better in the body tag or the head tag !-->
