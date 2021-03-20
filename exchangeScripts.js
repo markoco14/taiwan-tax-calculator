@@ -60,14 +60,16 @@ let changeCurrency = function() {
 	// this function needs to be separate from the API call.
 	// so I need to add an event listener eventually?
 
+
 	//initialize the tax variables
-	foreignTax.textContent = totalTax.textContent;
+	//use .slice to remove the $ from the totalTax as foreignTax is created
+	foreignTax.textContent = totalTax.textContent.slice(1);
 	taxToNumber = Number(foreignTax.textContent);
 	correctedTax = taxToNumber * 1/currencyData.rates.TWD; //this is EUR
 	console.log(`Your tax converted from TWD to EUR is ${correctedTax}`);
 
 	//initialize the income variables
-	foreignIncome.textContent = totalIncome.textContent;
+	foreignIncome.textContent = totalIncome.textContent.slice(1);
 	incomeToNumber = Number(foreignIncome.textContent);
 	correctedIncome = incomeToNumber * 1/currencyData.rates.TWD; //this is EUR
 	console.log(`Your income coverted from TWD to EUR is ${correctedIncome}`);
@@ -79,87 +81,93 @@ let changeCurrency = function() {
 		case('CAD'):
 			//convert the taxes
 			cadTax = correctedTax * currencyData.rates.CAD;
-			foreignTax.textContent = Math.floor(cadTax);
+			foreignTax.textContent = `$${Math.floor(cadTax)}`;
 			yourTax.textContent = 'Canadian dollars'
 			//convert the income
 			cadIncome = correctedIncome *currencyData.rates.CAD;
-			foreignIncome.textContent = Math.floor(cadIncome);
+			foreignIncome.textContent = `$${Math.floor(cadIncome)}`;
 			yourIncome.textContent = 'Canadian dollars'
 			//set the classes
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
+			currencyFlag.setAttribute('src', 'images/flagCanada.png');
 			break;
 		case('USD'):
 			//convert the taxes
 			usdTax = correctedTax * currencyData.rates.USD;
-			foreignTax.textContent = Math.floor(usdTax);
+			foreignTax.textContent = `$${Math.floor(usdTax)}`;
 			yourTax.textContent = 'American dollars'
 			//convert the income
 			usdIncome = correctedIncome * currencyData.rates.USD;
-			foreignIncome.textContent = Math.floor(usdIncome);
+			foreignIncome.textContent = `$${Math.floor(usdIncome)}`;
 			yourIncome.textContent = 'American dollars'
 			//set the classes
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
+			currencyFlag.setAttribute('src', 'images/flagUS.png');
 			break;
 		case('AUD'):
 			//convert the taxes
 			audTax = correctedTax * currencyData.rates.AUD;
-			foreignTax.textContent = Math.floor(audTax);
+			foreignTax.textContent = `$${Math.floor(audTax)}`;
 			yourTax.textContent = 'Australian dollars'
 			//convert the income
 			audIncome = correctedIncome * currencyData.rates.AUD;
-			foreignIncome.textContent = Math.floor(audIncome);
+			foreignIncome.textContent = `$${Math.floor(audIncome)}`;
 			yourIncome.textContent = 'Australian dollars'
 			//set the classes
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
+			currencyFlag.setAttribute('src', 'images/flagAustralia.png');
 			break;
 		case('EUR'): //Note the european exchange rate is 1.
 			//convert the taxes
 			eurTax = correctedTax * currencyData.rates.EUR;
-			foreignTax.textContent = Math.floor(eurTax);
+			foreignTax.textContent = `\u20ac${Math.floor(eurTax)}`;
 			yourTax.textContent = 'Euros'
 			//convert the income
 			eurIncome = correctedIncome * currencyData.rates.EUR;
-			foreignIncome.textContent = Math.floor(eurIncome);
+			foreignIncome.textContent = `\u20ac${Math.floor(eurIncome)}`;
 			yourIncome.textContent = 'Euros'
 			//set the classes
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
+			currencyFlag.setAttribute('src', 'images/flagIreland.png');
 			break;
 		case('GBP'):
 			//convert the taxes
 			gbpTax = correctedTax * currencyData.rates.GBP;
-			foreignTax.textContent = Math.floor(gbpTax);
+			foreignTax.textContent = `\u00a3${Math.floor(gbpTax)}`;
 			yourTax.textContent = 'British pounds'
 			//convert the income
 			gbpIncome = correctedIncome * currencyData.rates.GBP;
-			foreignIncome.textContent = Math.floor(gbpIncome);
+			foreignIncome.textContent = `\u00a3${Math.floor(gbpIncome)}`;
 			yourIncome.textContent = 'British pounds'
 			//set the classes
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
+			currencyFlag.setAttribute('src', 'images/flagUK.png');
 			break;
 		case('NZD'):
 			//convert the taxes
 			nzdTax = correctedTax * currencyData.rates.NZD;
-			foreignTax.textContent = Math.floor(nzdTax);
+			foreignTax.textContent = `$${Math.floor(nzdTax)}`;
 			yourTax.textContent = 'New Zealand dollars'
 			//convert the income
 			nzdIncome = correctedIncome * currencyData.rates.NZD;
-			foreignIncome.textContent = Math.floor(nzdIncome);
+			foreignIncome.textContent = `$${Math.floor(nzdIncome)}`;
 			yourIncome.textContent = 'New Zealand dollars'
 			//set the classes
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
+			currencyFlag.setAttribute('src', 'images/flagNZ.png');
 			break;
 		default:
 			foreignTax.textContent = '';
 			foreignIncome.textContent = '';
 			foreignTax.className = ''
 			foreignIncome.className = ''
-
+			currencyFlag.setAttribute('src', '');
 	}
 }
 
