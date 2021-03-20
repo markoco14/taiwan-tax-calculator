@@ -18,11 +18,13 @@
 				justify-content:center;
 				align-items:center;
 				box-shadow: 0px 2px rgba(20,20,20,0.3);
+				font-size:2em;
 			}
 
 			.header-pic {
-				width:100%;
-				object-fit: scale-down;
+				width:100vw;
+				height:75vh;
+				object-fit: cover;
 				
 			}
 			.name-container {
@@ -54,24 +56,26 @@
 			}
 			.sub-text {
 				text-align: center;
+				font-size:18px;
 			}
 
 			.income {
 				padding:10px;
 				text-align: center;
+				margin-top:10px;
 				margin-bottom:0;
 			}
 
 			.submit {
 				padding: 10px;
-				margin-bottom:15px;
+				margin-bottom:5px;
 			}
 
 			/* STYLE THE TAX AND CURRENCY CONTAINERS */
 			.flex-container {
 				display: flex;
 				flex-wrap:wrap;
-				justify-content:space-around;
+				justify-content:center;
 				font-family: Helvetica;
 				background-color:rgba(15,15,15,0.85);
 				box-shadow:0px -2px rgba(20,20,20,0.3);
@@ -89,23 +93,30 @@
 				background-color:rgb(255,255,255);
 			}
 
-			.total-container {
-				display:flex;
-				justify-content:center;
-			}
 
 			.tax-box {
 				display: flex;
 				flex-direction: column;
+				align-items:center;
+				text-align:center;
 			}
 
 			.currency-box {
 				display:flex;
 				flex-direction:column;
 				justify-content:top;
+				align-items:center;
+				text-align:center;
 
 			
 			}
+			.total-container {
+				border:1px solid black;
+				width:100%;
+				display:flex;
+				justify-content:space-around;
+			}
+
 			.subscript {
 				text-align:center;
 				font-size:8px;
@@ -117,7 +128,6 @@
 				text-align:center;
 				font-family: Helvetica;
 				font-size:2em;
-				line-height:2em;
 			}
 			.table-head {
 				/*background-color: rgba(50,50,200,0.8);*/
@@ -135,7 +145,7 @@
 			}
 
 	
-			/* STYLE THE DYNAMIC TAX DATA CHANGES */
+			/* Style color changes */
 			.no-tax-data {
 				background-color: rgba(240, 180, 40, 0.2);
 			}
@@ -144,7 +154,6 @@
 				background-color: rgba(240, 180, 40, 0.8);
 			}
 
-			/* STYLE THE DYNAMIC NET INCOME DATA CHANGES */
 			.no-income-data {
 				background-color: rgba(40,240, 140, 0.2);
 			}
@@ -154,16 +163,41 @@
 			}
 
 			/* Style the currency exchange flags*/
+
+			.selected-flag {
+				object-fit:cover;
+				width:200px;
+				border-radius:2px;
+			}
+
 			.exchange-flex {
 				display:flex;
+				width:100%;
 				justify-content:space-around;
+			}
+
+			.flag-container {
+				width:100%;
+				display:flex;
+				justify-content:space-around;
+				margin-bottom:10px;
+			}
+
+			.selector-img {
+				object-fit:cover;
+				width:50px;
+				height:30px;
+			}
+
+			.currency-selector {
+				width:100%;
 			}
 		</style>
 	</head>
 	<body>
 		<div class='head-container'>
 			<img 
-			src='Images/relaxRead.jpg'
+			src='images/relaxRead.jpg'
 			class='header-pic'
 			>
 			<div class='name-container'>
@@ -180,77 +214,112 @@
 		<div class='flex-container'>
 			<div class='tax-box flex-item'>
 				<h2 class='table-title'>Tax Calculator</h2>
+				<img src='images/flagTaiwan.png'
+					class='selected-flag'>
 				<p> Currency: New Taiwan Dollar
-					<input type='text' id='income' class='income page-title'>
-					<button id='submit' class='submit page-title'>Calculate</button>
+				<input type='text' id='income' class='income page-title'>
+				<button id='submit' class='submit page-title'>Calculate</button>
 				<table>
 					<thead>
 						<tr class='table-head'>
 							<th>Income Range</th>
 							<th>Tax %</th>
-							<th class='gross-data'>Salary</th>
+							<!--<th class='gross-data'>Salary</th>-->
 							<th class='tax-data'>Taxes</th>
-							<th class='income-data'>After Tax</th>
+							<th class='income-data'>Net Income</th>
 						</tr>
 					</thead>
 					<tbody class='table-info'>
 						<tr>
-							<td class='table-range'>0 <= 540,000</td>
+							<td class='table-range'>up to $540,000</td>
 							<td>5%</td>
-							<td id='firstGrossIncome'></td>
+							<!--<td id='firstGrossIncome'></td>-->
 							<td id='firstNetTax' class='no-tax-data'></td>
 							<td id='firstNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td class='table-range'>540,001 <= 1,210,000</td>
+							<td class='table-range'>up to $1,210,000</td>
 							<td>12%</td>
-							<td id='secondGrossIncome'></td>
+							<!--<td id='secondGrossIncome'></td>-->
 							<td id='secondNetTax' class='no-tax-data'></td>
 							<td id='secondNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td class='table-range'>1210001 <= 2,420,000</td>
+							<td class='table-range'>up to $2,420,000</td>
 							<td>20%</td>
-							<td id='thirdGrossIncome'></td>
+							<!--<td id='thirdGrossIncome'></td>-->
 							<td id='thirdNetTax' class='no-tax-data'></td>
 							<td id='thirdNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td class='table-range'>2420001 <= 4,530,000</td>
+							<td class='table-range'>up to $4,530,000</td>
 							<td>30%</td>
-							<td id='fourthGrossIncome'></td>
+							<!--<td id='fourthGrossIncome'></td>-->
 							<td id='fourthNetTax' class='no-tax-data'></td>
 							<td id='fourthNetIncome' class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td class='table-range'>4530001 <= 10,310,000 </td>
+							<td class='table-range'>up to $10,310,000 </td>
 							<td>40%</td>
-							<td id='fifthGrossIncome'></td>
+							<!--<td id='fifthGrossIncome'></td>-->
 							<td id='fifthNetTax' class='no-tax-data'></td>
 							<td id='fifthNetIncome'class='no-income-data'></td>
 						</tr>
 						<tr>
-							<td class='table-range'>10,310,001+ </td>
+							<td class='table-range'>$10,310,001+ </td>
 							<td>45%</td>
-							<td id='sixthGrossIncome'></td>
+							<!--<td id='sixthGrossIncome'></td>-->
 							<td id='sixthNetTax' class='no-tax-data'></td>
 							<td id='sixthNetIncome'class='no-income-data'></td>
 						</tr>
 					</tbody>
 				</table>
 				<div class=total-container>
-					<p>Net Income:</p>
-					<p id='total-income'></p>
-				</div>
-				<div class=total-container>
-					<p>Net Taxes:</p>
-					<p id='total-tax'></p>
+					<div>
+						<p>Net Income:</p>
+						<p id='total-income'></p>
+					</div>
+					<div>
+						<p>Net Taxes:</p>
+						<p id='total-tax'></p>
+					</div>
 				</div>
 			</div>
 			<div class='flex-item currency-box'>
 				<h1 class='table-title'>Currency Exchange</h1>
+				<img src=''
+					id='currency-flag'
+					class='selected-flag'>
 				<p> Choose your currency below to see how much your salary is worth in your home country </p>
-				<select id='select-currency'>
+
+				<div id='flag-bar' class='flag-container'>
+					<img src='images/flagCanada.png'
+						id='canada-flag'
+						class='selector-img' 
+						value='CAD'>
+					<img src='images/flagUS.png' 
+						id='us-flag'
+						class='selector-img' 
+						value='USD'>
+					<img src='images/flagAustralia.png' 
+						id='aus-flag'
+					    class='selector-img' 
+					    value='AUD'>
+					<img src='images/flagUK.png'
+						id='uk-flag' 
+						class='selector-img'
+						value='GBP'>
+					<img src='images/flagIreland.png' 
+						id='ire-flag'
+						class='selector-img'
+						value="EUR">
+					<img src='images/flagNZ.png' 
+						id='nz-flag'
+						class='selector-img'
+						value='NZD'>
+				</div>
+
+				<select id='select-currency' class='currency-selector'>
 					<option value=''>--Choose your currency--</option>
 					<option value='CAD'>Canadian</option>
 					<option value='USD'>US</option>
@@ -259,6 +328,7 @@
 					<option value='GBP'>British</option>
 					<option value='NZD'>New Zealand</option>
 				</select>
+				<p class='subscript'>*all currencies are updated daily and may not be exact</p>
 				<div class='exchange-flex'>
 					<p>Your income in <span id='your-income'></span>:</p>
 					<p id='exchange-income'></p>
@@ -268,7 +338,6 @@
 					<p id='exchange-tax'></p>
 				</div>
 
-				<p class='subscript'>*all currencies are updated daily and may not be exact</p>
 			</div>
 		</div> <!--//end of calculator and currency exchange container -->
 
@@ -280,6 +349,8 @@
 
 		<!-- I don't know if the JS script is better in the body tag or the head tag !-->
 		<script src='exchangeScripts.js'></script>
-		<script src="taxCalculatorScript.js"></script>
+		<script src='taxCalculatorScript.js'></script>
+		<script src='buttonBarScript.js'></script>
+
 	</body>
 </html>
