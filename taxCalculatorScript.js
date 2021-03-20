@@ -2,29 +2,6 @@
 const input = document.getElementById('income');
 const submit = document.getElementById('submit');
 
-//create references to the paragraphs
-const paraOne = document.createElement('p');
-const paraTwo = document.createElement('p');
-const paraThree = document.createElement('p');
-const paraFour = document.createElement('p');
-const paraFive = document.createElement('p');
-const paraSix = document.createElement('p');
-const paraNet = document.createElement('p');
-
-//create an array for the paragraphs
-//initialize all your paragraph variables in the array.
-//I don't think it is possible to initialize all my variables in an array
-
-let paragraphArray = [
-	paraOne, 
-	paraTwo, 
-	paraThree, 
-	paraFour, 
-	paraFive, 
-	paraSix, 
-	paraNet
-	]
-
 //TAX VARIABLES HERE
 //create references to the table tax cells
 const firstTableTax = document.getElementById('firstNetTax');
@@ -134,20 +111,15 @@ let firstBracket = function() {
 	let incomeTax = grossIncome * firstTaxRate;
 	//find net income
 	let netIncome = grossIncome - incomeTax;
-	//make paragraph
-	paraOne.textContent = `You will pay $${incomeTax} on $${grossIncome}. `;
-	paraNet.textContent = `Your net income is $${netIncome}.`;
 	//set table data content
-	firstTableTax.textContent = incomeTax;
-	firstTableNet.textContent = netIncome;
-	firstGrossIncome.textContent = grossIncome;
-	
-
-	totalTax.textContent = incomeTax;
-	totalIncome.textContent = netIncome;
+	firstTableTax.textContent = `$${incomeTax}`;
+	firstTableNet.textContent = `$${netIncome}`;
+	/*firstGrossIncome.textContent = `$${grossIncome}`;*/
+	//set the net income and taxes content
+	totalTax.textContent = `$${incomeTax}`;
+	totalIncome.textContent = `$${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
-
 }
 
 // write function for 540000 < income <= 1210000
@@ -164,24 +136,20 @@ let secondBracket = function() {
 	let secondNetIncome = grossIncomeTwo - secondIncomeTax;
 	// variable to calculate the total net income
 	let netIncome = firstNetIncome + secondNetIncome;
-	// change para text content and append
-	paraOne.textContent = `You will pay $${firstTaxMax} on your first $${firstRange}.`
-	paraTwo.textContent = ` You will pay $${secondIncomeTax} on the remaining $${grossIncomeTwo}.`;
-	paraNet.textContent = `Your net income is $${netIncome}.`;
 
 	//set table data content
 	for (i = 0; i < 1; i++) {
-		tableTaxArray[i].textContent = maxTaxArray[i];
-		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i];
-		grossTableArray[i].textContent = incomeRangeArray[i];
+		tableTaxArray[i].textContent = `$${maxTaxArray[i]}`;
+		tableIncomeArray[i].textContent = `$${incomeRangeArray[i]-maxTaxArray[i]}`;
+		/*grossTableArray[i].textContent = `$${incomeRangeArray[i]}`;*/
 	}
 
-	secondTableTax.textContent = secondIncomeTax;
-	secondTableNet.textContent = secondNetIncome;
-	secondGrossIncome.textContent = grossIncomeTwo;
+	secondTableTax.textContent = `$${secondIncomeTax}`;
+	secondTableNet.textContent = `$${secondNetIncome}`;
+	/*secondGrossIncome.textContent = `$${grossIncomeTwo}`;*/
 	
-	totalTax.textContent = firstIncomeTax + secondIncomeTax;
-	totalIncome.textContent = firstNetIncome + secondNetIncome;
+	totalTax.textContent = `$${firstIncomeTax + secondIncomeTax}`;
+	totalIncome.textContent = `$${firstNetIncome + secondNetIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
 
@@ -203,24 +171,20 @@ let thirdBracket = function() {
 	let netIncomeThree = grossIncomeThree - thirdIncomeTax;
 	//find total net income
 	let netIncome = netIncomeThree + firstNetIncome + secondNetIncome;
-	//change paragraph content
-	paraOne.textContent = `You will pay $${firstTaxMax} on the first $${firstRange}.`;
-	paraTwo.textContent = `You will pay $${secondTaxMax} on the second $${secondRange}.`;
-	paraThree.textContent = `And you will pay $${thirdIncomeTax} on the remaining $${grossIncomeThree}.`;
-	paraNet.textContent = `Your net income is $${netIncome}`;
 
 	// set the table data content
 	for (i = 0; i < 2; i++) {
-		tableTaxArray[i].textContent = maxTaxArray[i];
-		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i];
-		grossTableArray[i].textContent = incomeRangeArray[i];
+		tableTaxArray[i].textContent = `$${maxTaxArray[i]}`;
+		tableIncomeArray[i].textContent = `$${incomeRangeArray[i]-maxTaxArray[i]}`;
+		/*grossTableArray[i].textContent = `$${incomeRangeArray[i]}`;*/
 	}
-	thirdTableTax.textContent = thirdIncomeTax;
-	thirdTableNet.textContent = netIncomeThree;
-	thirdGrossIncome.textContent = grossIncomeThree;
 
-	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax;
-	totalIncome.textContent = netIncome;
+	thirdTableTax.textContent = `$${thirdIncomeTax}`;
+	thirdTableNet.textContent = `$${netIncomeThree}`;
+	/*thirdGrossIncome.textContent = `$${grossIncomeThree}`;*/
+
+	totalTax.textContent = `$${firstIncomeTax + secondIncomeTax + thirdIncomeTax}`;
+	totalIncome.textContent = `$${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
 
@@ -246,26 +210,20 @@ let fourthBracket = function() {
 	let netIncomeFour = grossIncomeFour - fourthIncomeTax;
 	//find the total net income
 	let netIncome = netIncomeOne + netIncomeTwo + netIncomeThree + netIncomeFour
-	//set the paragraph content
-	paraOne.textContent = `You will pay $${firstTaxMax} on the first $${firstRange}.`;
-	paraTwo.textContent = `You will pay $${secondTaxMax} on the second $${secondRange}.`;
-	paraThree.textContent =  `You will pay $${thirdTaxMax} on the third $${thirdRange}.`;
-	paraFour.textContent = `And you will pay $${fourthIncomeTax} on the remaining $${grossIncomeFour}.`
-	paraNet.textContent = `Your net income is $${netIncome}.`;
 
 	// set the table data content
 	for (i = 0; i < 3; i++) {
-		tableTaxArray[i].textContent = maxTaxArray[i];
-		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i];
-		grossTableArray[i].textContent = incomeRangeArray[i];
+		tableTaxArray[i].textContent = `$${maxTaxArray[i]}`;
+		tableIncomeArray[i].textContent = `$${incomeRangeArray[i]-maxTaxArray[i]}`;
+		/*grossTableArray[i].textContent = `$${incomeRangeArray[i]}`;*/
 	}
 
-	fourthTableTax.textContent = fourthIncomeTax;
-	fourthTableNet.textContent = netIncomeFour;
-	fourthGrossIncome.textContent = grossIncomeFour;
+	fourthTableTax.textContent = `$${fourthIncomeTax}`;
+	fourthTableNet.textContent = `$${netIncomeFour}`;
+	/*fourthGrossIncome.textContent = `$${grossIncomeFour}`;*/
 
-	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax;
-	totalIncome.textContent = netIncome;
+	totalTax.textContent = `$${firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax}`;
+	totalIncome.textContent = `$${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
 
@@ -298,31 +256,21 @@ let fifthBracket = function() {
 	//total net income
 	let netIncome = firstNetIncome + secondNetIncome + thirdNetIncome + fourthNetIncome + fifthNetIncome;
 
-	//paragraph content
-	paraOne.textContent = `You will pay $${firstTaxMax} on the first $${firstRange}.`;
-	paraTwo.textContent = `You will pay $${secondTaxMax} on the second $${secondRange}.`;
-	paraThree.textContent =  `You will pay $${thirdTaxMax} on the third $${thirdRange}.`;
-	paraFour.textContent = `You will pay $${fourthTaxMax} on the fourth $${fourthRange}.`;
-	paraFive.textContent = `You will pay $${fifthIncomeTax} on the remaining $${grossIncomeFive}.`
-	paraNet.textContent = `Your net income is $${netIncome}.`;
-
 	// set the table data content
 	for (i = 0; i < 4; i++) {
-		tableTaxArray[i].textContent = maxTaxArray[i];
-		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i];
-		grossTableArray[i].textContent = incomeRangeArray[i];
+		tableTaxArray[i].textContent = `$${maxTaxArray[i]}`;
+		tableIncomeArray[i].textContent = `$${incomeRangeArray[i]-maxTaxArray[i]}`;
+		/*grossTableArray[i].textContent = `$${incomeRangeArray[i]}`;*/
 	}
 
-	fifthTableTax.textContent = fifthIncomeTax;
-	fifthTableNet.textContent = fifthNetIncome;
-	fifthGrossIncome.textContent = grossIncomeFive;
+	fifthTableTax.textContent = `$${fifthIncomeTax}`;
+	fifthTableNet.textContent = `$${fifthNetIncome}`;
+	/*fifthGrossIncome.textContent = `$${grossIncomeFive}`;*/
 
-	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax 
-							+ fourthIncomeTax + fifthIncomeTax;
-	totalIncome.textContent = netIncome;
+	totalTax.textContent = `$${firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax + fifthIncomeTax}`;
+	totalIncome.textContent = `$${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
-
 
 }
 
@@ -357,31 +305,21 @@ let sixthBracket = function() {
 	//total net income
 	let netIncome = netIncomeOne + netIncomeTwo + netIncomeThree + netIncomeFour + netIncomeFive + netIncomeSix;
 
-	//set the paragraph text content
-	paraOne.textContent = `You will pay $${firstTaxMax} on the first $${firstRange}.`;
-	paraTwo.textContent = `You will pay $${secondTaxMax} on the second $${secondRange}.`;
-	paraThree.textContent =  `You will pay $${thirdTaxMax} on the third $${thirdRange}.`;
-	paraFour.textContent = `You will pay $${fourthTaxMax} on the fourth $${fourthRange}.`;
-	paraFive.textContent = `You will pay $${fifthTaxMax} on the fifth $${fifthRange}. `;
-	paraSix.textContent = `And you will pay $${sixthIncomeTax} on the remaining $${grossIncomeSix}.`;
-	paraNet.textContent = `Your net income is $${netIncome}.`;
-
 	// set the table data content
 	// I want to shortner the second line... 
 	//but I would need variables and arrays for the calculations
 	for (i = 0; i < 5; i++) {
-		tableTaxArray[i].textContent = maxTaxArray[i];
-		tableIncomeArray[i].textContent = incomeRangeArray[i]-maxTaxArray[i];
-		grossTableArray[i].textContent = incomeRangeArray[i];
+		tableTaxArray[i].textContent = `$${maxTaxArray[i]}`;
+		tableIncomeArray[i].textContent = `$${incomeRangeArray[i]-maxTaxArray[i]}`;
+		/*grossTableArray[i].textContent = `$${incomeRangeArray[i]}`;*/
 	}
 	
-	sixthTableTax.textContent = sixthIncomeTax;
-	sixthTableNet.textContent = netIncomeSix;
-	sixthGrossIncome.textContent = grossIncomeSix;
+	sixthTableTax.textContent = `$${sixthIncomeTax}`;
+	sixthTableNet.textContent = `$${netIncomeSix}`;
+	/*sixthGrossIncome.textContent = `$${grossIncomeSix}`;*/
 
-	totalTax.textContent = firstIncomeTax + secondIncomeTax + thirdIncomeTax 
-							+ fourthIncomeTax + fifthIncomeTax + sixthIncomeTax;
-	totalIncome.textContent = netIncome;
+	totalTax.textContent = `$${firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax + fifthIncomeTax + sixthIncomeTax}`;
+	totalIncome.textContent = `$${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
 
@@ -394,11 +332,6 @@ let chooseFunction = function(whichFunctions) {
 	//as long as each is equal in length.
 	//but before I do I want to find out if
 	//I should make an object with properties for each of these. 
-
-	//reset the paragraph content
-	for (i = 0; i < paragraphArray.length; i++) {
-		paragraphArray[i].textContent = '';
-	}
 	//reset the table tax data
 	for (i = 0; i < tableTaxArray.length; i++) {
 		tableTaxArray[i].textContent = '';
@@ -408,18 +341,11 @@ let chooseFunction = function(whichFunctions) {
 		tableIncomeArray[i].textContent = '';
 	}
 	//reset the table gross income data
-	for (i = 0; i < grossTableArray.length; i++) {
+	/*for (i = 0; i < grossTableArray.length; i++) {
 		grossTableArray[i].textContent = '';
-	}
-	/* this is code for changing the class names. I don't think
-	it belongs here but I'm storing it here anyways.
-	for (i = 0; i < tableIncomeArray.length; i++) {
-		if (tableIncomeArray[i].textContent === ''){
-			tableIncomeArray[i].className = 'no-data';
-		} else {
-			tableIncomeArray[i].className = 'income-data';
-		}
-	} */
+	}*/
+
+	
 
 	//reset total tax and income
 	totalTax.textContent = '';
