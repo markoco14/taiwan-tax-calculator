@@ -3,222 +3,7 @@
 		<meta charset='utf-8'>
 		<meta name='viewport' content='width=device-width initial-scale=1.0'>
 		<title>Taiwan Tax</title>
-		<style>
-
-			body {
-				margin:0px;
-				padding:0px;
-			}
-
-
-			/* STYLE THE HEADER SECTION */
-			.head-container {
-				font-family: arial;
-				position:relative;
-				display:flex;
-				justify-content:center;
-				align-items:center;
-				box-shadow: 0px 2px rgba(20,20,20,0.3);
-				font-size:2em;
-			}
-
-			.header-pic {
-				width:100vw;
-				height:75vh;
-				object-fit: cover;
-
-				
-			}
-			.name-container {
-				width:70%;
-				position:absolute;
-				background-color: rgba(30,30,30,0.5);
-				color: white;
-				border-radius:3px;
-				display:flex;
-				flex-direction:column;
-				justify-content:center;
-				align-items:center;
-			}
-
-			.head-flex-item {
-				/* don't know what to put in here */
-			}
-
-
-
-
-
-			/* STYLE THE BODY SECTION */
-			.sub-container {
-				font-family: monospace;
-				font-size: 16px;
-				color:rgba(15,15,15,0.85);
-				height:150px;
-				display:flex;
-				justify-content: center;
-				align-items: center;
-			}
-			.sub-text {
-				text-align: center;
-				font-size:18px;
-			}
-
-			.income {
-				padding:10px;
-				text-align: center;
-				margin-top:10px;
-				margin-bottom:0;
-			}
-
-			.submit {
-				padding: 10px;
-				margin-bottom:5px;
-			}
-
-			/* STYLE THE TAX AND CURRENCY CONTAINERS */
-			.flex-container {
-				display: flex;
-				flex-wrap:wrap;
-				justify-content:center;
-				font-family: Helvetica;
-				background-color:rgba(15,15,15,0.85);
-				box-shadow:0px -2px rgba(20,20,20,0.3);
-			}
-
-			.flex-item {
-				border: 1px solid rgb(185,185,185);
-				border-radius:3px;
-				margin:10px;
-				width: 350px;
-				min-height:300px;
-				min-width:350px;
-				box-shadow: 4px 4px 2px rgb(100,100,100,0.3);
-				padding:5px;
-				background-color:rgb(255,255,255);
-			}
-
-
-			.tax-box {
-				position:relative;
-				display: flex;
-				flex-direction: column;
-				align-items:center;
-				text-align:center;
-			}
-
-			.currency-box {
-				position:relative;
-				display:flex;
-				flex-direction:column;
-				justify-content:top;
-				align-items:center;
-				text-align:center;
-
-			
-			}
-			.total-container {
-				width:100%;
-				display:flex;
-				justify-content:space-around;
-			}
-
-			.subscript {
-				position:absolute;
-				text-align:center;
-				font-size:8px;
-				bottom:0px;
-			}
-
-			/* STYLE THE TAX TABLE  */
-			.table-title {
-				text-align:center;
-				font-family: Helvetica;
-				font-size:2em;
-			}
-			.table-head {
-				/*background-color: rgba(50,50,200,0.8);*/
-				text-align:center;
-				border-bottom:2px solid black;
-			}
-
-			.table-info {
-				/*background-color:rgba(220,220,220,0.6);*/
-				text-align:right;
-			}
-
-			.table-range {
-				text-align: center;
-			}
-
-	
-			/* Style color changes */
-			.no-tax-data {
-				background-color: rgba(240, 180, 40, 0.2);
-			}
-
-			.tax-data {
-				background-color: rgba(240, 180, 40, 0.8);
-			}
-
-			.no-income-data {
-				background-color: rgba(40,240, 140, 0.2);
-			}
-
-			.income-data {
-				background-color: rgba(40,240, 140, 0.8);
-			}
-
-			/* Style the currency exchange flags*/
-
-			.selected-flag {
-				object-fit:cover;
-				width:200px;
-				border-radius:2px;
-			}
-
-			.exchange-flex {
-				display:flex;
-				width:100%;
-				justify-content:space-around;
-				margin-top:10px;
-			}
-
-			.exchange-flex-bottom {
-				margin-top:-5px;
-				margin-bottom:10px;
-			}
-
-			.flag-container {
-				width:100%;
-				display:flex;
-				justify-content:space-around;
-				margin-bottom:10px;
-			}
-
-			.selector-img {
-				object-fit:cover;
-				width:50px;
-				height:30px;
-			}
-
-			.currency-selector {
-				width:100%;
-				margin-top:10px;
-				font-size:16px;
-			}
-
-			/* style the footer */
-			.footer {
-				height:100px;
-				padding:10px;
-				text-align:center;
-				color:white;
-				background-color:rgba(15,15,15,0.85);
-				margin-top:150px;
-
-			}
-		</style>
+		<link rel='stylesheet' href='styles.css' >
 	</head>
 	<body>
 		<div class='head-container'>
@@ -232,6 +17,7 @@
 		</div>
 		<div class='sub-container'>
 				<p class='body-text'>Tax info, super simple</p>
+				<p></p>
 		</div>
 			
 		<div class='flex-container'>
@@ -239,9 +25,12 @@
 				<h2 class='table-title'>Tax Calculator</h2>
 				<img src='images/flagTaiwan.png'
 					class='selected-flag'>
-				<p> Currency: New Taiwan Dollar
-				<input type='text' id='income' class='income page-title'>
-				<button id='submit' class='submit page-title'>Calculate</button>
+				<p>Currency: New Taiwan Dollar </p>
+				<p>Enter your desired annual salary below to find out your taxes and net income. Please remove all '$' and ',' from your number before you calculate -- ie; 5000.</p>
+				<div class='inputs-div'>
+					<input type='text' id='income' class='income page-title'>
+					<button id='submit' class='submit page-title'>Calculate</button>
+				</div>
 				<table>
 					<thead>
 						<tr class='table-head'>
@@ -309,7 +98,7 @@
 				</div>
 			</div>
 			<div class='flex-item currency-box'>
-				<h1 class='table-title'>Currency Exchange</h1>
+				<h1 class='table-title'>Currency Exchange*</h1>
 				<img src=''
 					id='currency-flag'
 					class='selected-flag'>
@@ -351,7 +140,7 @@
 					<option value='GBP'>British</option>
 					<option value='NZD'>New Zealand</option>
 				</select>
-				<p class='subscript'>*all currencies are updated daily and may not be exact</p>
+				<p class='subscript'>*All currencies are updated daily using a third-party plugin. Conversions may not be exact and are for reference only.</p>
 				<div class='exchange-flex'>
 					<p>Your income in <span id='your-income'></span>:</p>
 					<p id='exchange-income'></p>

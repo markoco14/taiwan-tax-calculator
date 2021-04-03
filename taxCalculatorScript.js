@@ -2,6 +2,7 @@
 const input = document.getElementById('income');
 const submit = document.getElementById('submit');
 
+
 //TAX VARIABLES HERE
 //create references to the table tax cells
 const firstTableTax = document.getElementById('firstNetTax');
@@ -58,6 +59,8 @@ let grossTableArray = [
 
 // establish gross income variable for functions
 let grossIncome;
+let netIncome;
+let netTax;
 
 
 //make tax rate variables
@@ -108,16 +111,16 @@ let firstBracket = function() {
 	//get your gross income
 	grossIncome = input.value;
 	//find the taxes
-	let incomeTax = grossIncome * firstTaxRate;
+	netTax = grossIncome * firstTaxRate;
 	//find net income
-	let netIncome = grossIncome - incomeTax;
+	netIncome = grossIncome - netTax;
 	//set table data content
-	firstTableTax.textContent = `$${incomeTax}`;
-	firstTableNet.textContent = `$${netIncome}`;
+	firstTableTax.textContent = `$${netTax.toLocaleString('en-US')}`;
+	firstTableNet.textContent = `$${netIncome.toLocaleString('en-US')}`;
 	/*firstGrossIncome.textContent = `$${grossIncome}`;*/
 	//set the net income and taxes content
-	totalTax.textContent = `$${incomeTax}`;
-	totalIncome.textContent = `$${netIncome}`;
+	totalTax.textContent = `${netTax}`;
+	totalIncome.textContent = `${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
 }
@@ -135,24 +138,25 @@ let secondBracket = function() {
 	let firstNetIncome = firstRange - firstIncomeTax;
 	let secondNetIncome = grossIncomeTwo - secondIncomeTax;
 	// variable to calculate the total net income
-	let netIncome = firstNetIncome + secondNetIncome;
+	netIncome = firstNetIncome + secondNetIncome;
+	netTax = firstIncomeTax + secondIncomeTax;
+
 
 	//set table data content
 	for (i = 0; i < 1; i++) {
-		tableTaxArray[i].textContent = `$${maxTaxArray[i]}`;
-		tableIncomeArray[i].textContent = `$${incomeRangeArray[i]-maxTaxArray[i]}`;
+		tableTaxArray[i].textContent = `$${maxTaxArray[i].toLocaleString('en-US')}`;
+		tableIncomeArray[i].textContent = `$${(incomeRangeArray[i]-maxTaxArray[i]).toLocaleString('en-US')}`;
 		/*grossTableArray[i].textContent = `$${incomeRangeArray[i]}`;*/
 	}
 
-	secondTableTax.textContent = `$${secondIncomeTax}`;
-	secondTableNet.textContent = `$${secondNetIncome}`;
+	secondTableTax.textContent = `$${secondIncomeTax.toLocaleString('en-US')}`;
+	secondTableNet.textContent = `$${secondNetIncome.toLocaleString('en-US')}`;
 	/*secondGrossIncome.textContent = `$${grossIncomeTwo}`;*/
 	
-	totalTax.textContent = `$${firstIncomeTax + secondIncomeTax}`;
-	totalIncome.textContent = `$${firstNetIncome + secondNetIncome}`;
+	totalTax.textContent = `${netTax}`;
+	totalIncome.textContent = `${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
-
 }
 
 let thirdBracket = function() {
@@ -170,21 +174,22 @@ let thirdBracket = function() {
 	let secondNetIncome = secondRange - secondIncomeTax;
 	let netIncomeThree = grossIncomeThree - thirdIncomeTax;
 	//find total net income
-	let netIncome = netIncomeThree + firstNetIncome + secondNetIncome;
+	netIncome = netIncomeThree + firstNetIncome + secondNetIncome;
+	netTax = firstIncomeTax + secondIncomeTax + thirdIncomeTax;
 
 	// set the table data content
 	for (i = 0; i < 2; i++) {
-		tableTaxArray[i].textContent = `$${maxTaxArray[i]}`;
-		tableIncomeArray[i].textContent = `$${incomeRangeArray[i]-maxTaxArray[i]}`;
+		tableTaxArray[i].textContent = `$${maxTaxArray[i].toLocaleString('en-US')}`;
+		tableIncomeArray[i].textContent = `$${(incomeRangeArray[i]-maxTaxArray[i]).toLocaleString('en-US')}`;
 		/*grossTableArray[i].textContent = `$${incomeRangeArray[i]}`;*/
 	}
 
-	thirdTableTax.textContent = `$${thirdIncomeTax}`;
-	thirdTableNet.textContent = `$${netIncomeThree}`;
+	thirdTableTax.textContent = `$${thirdIncomeTax.toLocaleString('en-US')}`;
+	thirdTableNet.textContent = `$${netIncomeThree.toLocaleString('en-US')}`;
 	/*thirdGrossIncome.textContent = `$${grossIncomeThree}`;*/
 
-	totalTax.textContent = `$${firstIncomeTax + secondIncomeTax + thirdIncomeTax}`;
-	totalIncome.textContent = `$${netIncome}`;
+	totalTax.textContent = `${netTax}`;
+	totalIncome.textContent = `${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
 
@@ -209,21 +214,22 @@ let fourthBracket = function() {
 	let netIncomeThree = thirdRange - thirdTaxMax;
 	let netIncomeFour = grossIncomeFour - fourthIncomeTax;
 	//find the total net income
-	let netIncome = netIncomeOne + netIncomeTwo + netIncomeThree + netIncomeFour
+	netIncome = netIncomeOne + netIncomeTwo + netIncomeThree + netIncomeFour
+	netTax = firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax;
 
 	// set the table data content
 	for (i = 0; i < 3; i++) {
-		tableTaxArray[i].textContent = `$${maxTaxArray[i]}`;
-		tableIncomeArray[i].textContent = `$${incomeRangeArray[i]-maxTaxArray[i]}`;
+		tableTaxArray[i].textContent = `$${maxTaxArray[i].toLocaleString('en-US')}`;
+		tableIncomeArray[i].textContent = `$${(incomeRangeArray[i]-maxTaxArray[i]).toLocaleString('en-US')}`;
 		/*grossTableArray[i].textContent = `$${incomeRangeArray[i]}`;*/
 	}
 
-	fourthTableTax.textContent = `$${fourthIncomeTax}`;
-	fourthTableNet.textContent = `$${netIncomeFour}`;
+	fourthTableTax.textContent = `$${fourthIncomeTax.toLocaleString('en-US')}`;
+	fourthTableNet.textContent = `$${netIncomeFour.toLocaleString('en-US')}`;
 	/*fourthGrossIncome.textContent = `$${grossIncomeFour}`;*/
 
-	totalTax.textContent = `$${firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax}`;
-	totalIncome.textContent = `$${netIncome}`;
+	totalTax.textContent = `${netTax}`;
+	totalIncome.textContent = `${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
 
@@ -254,21 +260,22 @@ let fifthBracket = function() {
 	let fifthNetIncome = grossIncomeFive - fifthIncomeTax;
 
 	//total net income
-	let netIncome = firstNetIncome + secondNetIncome + thirdNetIncome + fourthNetIncome + fifthNetIncome;
+	netIncome = firstNetIncome + secondNetIncome + thirdNetIncome + fourthNetIncome + fifthNetIncome;
+	netTax = firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax + fifthIncomeTax;
 
 	// set the table data content
 	for (i = 0; i < 4; i++) {
-		tableTaxArray[i].textContent = `$${maxTaxArray[i]}`;
-		tableIncomeArray[i].textContent = `$${incomeRangeArray[i]-maxTaxArray[i]}`;
+		tableTaxArray[i].textContent = `$${maxTaxArray[i].toLocaleString('en-US')}`;
+		tableIncomeArray[i].textContent = `$${(incomeRangeArray[i]-maxTaxArray[i]).toLocaleString('en-US')}`;
 		/*grossTableArray[i].textContent = `$${incomeRangeArray[i]}`;*/
 	}
 
-	fifthTableTax.textContent = `$${fifthIncomeTax}`;
-	fifthTableNet.textContent = `$${fifthNetIncome}`;
+	fifthTableTax.textContent = `$${fifthIncomeTax.toLocaleString('en-US')}`;
+	fifthTableNet.textContent = `$${fifthNetIncome.toLocaleString('en-US')}`;
 	/*fifthGrossIncome.textContent = `$${grossIncomeFive}`;*/
 
-	totalTax.textContent = `$${firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax + fifthIncomeTax}`;
-	totalIncome.textContent = `$${netIncome}`;
+	totalTax.textContent = `${netTax}`;
+	totalIncome.textContent = `${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
 
@@ -303,31 +310,46 @@ let sixthBracket = function() {
 	let netIncomeSix = grossIncomeSix - sixthIncomeTax;
 
 	//total net income
-	let netIncome = netIncomeOne + netIncomeTwo + netIncomeThree + netIncomeFour + netIncomeFive + netIncomeSix;
+	netIncome = netIncomeOne + netIncomeTwo + netIncomeThree + netIncomeFour + netIncomeFive + netIncomeSix;
+	netTax = firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax + fifthIncomeTax + sixthIncomeTax;
 
 	// set the table data content
 	// I want to shortner the second line... 
 	//but I would need variables and arrays for the calculations
+	//try to add the locale string method into the for loop
+	//since it works I can copy and paste the code into the other for loops
 	for (i = 0; i < 5; i++) {
-		tableTaxArray[i].textContent = `$${maxTaxArray[i]}`;
-		tableIncomeArray[i].textContent = `$${incomeRangeArray[i]-maxTaxArray[i]}`;
+		tableTaxArray[i].textContent = `$${maxTaxArray[i].toLocaleString('en-US')}`;
+		tableIncomeArray[i].textContent = `$${(incomeRangeArray[i]-maxTaxArray[i]).toLocaleString('en-US')}`;
 		/*grossTableArray[i].textContent = `$${incomeRangeArray[i]}`;*/
 	}
 	
-	sixthTableTax.textContent = `$${sixthIncomeTax}`;
-	sixthTableNet.textContent = `$${netIncomeSix}`;
+	sixthTableTax.textContent = `$${sixthIncomeTax.toLocaleString('en-US')}`;
+	sixthTableNet.textContent = `$${netIncomeSix.toLocaleString('en-US')}`;
 	/*sixthGrossIncome.textContent = `$${grossIncomeSix}`;*/
 
-	totalTax.textContent = `$${firstIncomeTax + secondIncomeTax + thirdIncomeTax + fourthIncomeTax + fifthIncomeTax + sixthIncomeTax}`;
-	totalIncome.textContent = `$${netIncome}`;
+	totalTax.textContent = `${netTax}`;
+	totalIncome.textContent = `${netIncome}`;
 	totalTax.className = 'tax-data'
 	totalIncome.className = 'income-data'
 
 
 }
 
+let userInput;
 //function to call tax functions on click
 let chooseFunction = function(whichFunctions) {
+	if (input.value === '') {
+		alert('You need to enter a number to use the tax calculator.')
+		return
+	} 
+
+	if (!(Number(input.value) >= 0)) {
+		alert('You need to enter a number to use the tax calculator.')
+		input.value = '';
+		return
+	}
+
 	//all of these for loops can be put into one 
 	//as long as each is equal in length.
 	//but before I do I want to find out if
@@ -345,8 +367,6 @@ let chooseFunction = function(whichFunctions) {
 		grossTableArray[i].textContent = '';
 	}*/
 
-	
-
 	//reset total tax and income
 	totalTax.textContent = '';
 	totalIncome.textContent = '';
@@ -359,11 +379,14 @@ let chooseFunction = function(whichFunctions) {
 	foreignIncome.textContent = '';
 	foreignTax.className = '';
 	foreignIncome.className = '';
+
+	//the lines below reset the currency converter
 	select.value = '';
 	yourIncome.textContent = '';
 	yourTax.textContent = '';
 	
-
+	userInput = input.value;
+	
 	grossIncome = input.value;
 	if (grossIncome < 540001) {
 		firstBracket();
@@ -378,6 +401,42 @@ let chooseFunction = function(whichFunctions) {
 	} else if (grossIncome >= 10310001 ) {
 		sixthBracket();
 	} 
+	//check if userInput is a number
+	
+	//i tried to think how i would do it..
+	//then I looked it up..
+	//it seems like it is pretty easy to do, actually..
+	//just use .toLocaleString('en-US');
+	//I just took the $ out of the number above in each bracket's function
+	//so I'd have a pure number, and simply add the $ in after
+	//I do the localeString() method
+	let taxNumber = Number(totalTax.textContent).toLocaleString('en-US');
+	let incomeNumber = Number(totalIncome.textContent).toLocaleString('en-US');
+	//console.log(`Your net taxes are $${taxNumber}`)
+	totalTax.textContent =  `$${taxNumber}`;
+	totalIncome.textContent =  `$${incomeNumber}`;
+
+	//make the input text content have commas
+	//here I'm waiting until the function is actually carried
+	//before I check for an error and stop the function
+	//I need to find a way to test if the input value is not a number earlier
+	//input.value = `$${Number(grossIncome).toLocaleString('en-US')}`
+	
+	/*
+	//reset userInput
+	let noCommas = function() {
+		userInput = userInput.slice(userInput.indexOf('$')+1);
+		userInput = userInput.split(',');
+		let newUserInput = userInput[0];
+		for (i = 1; i < userInput.length; i++) {
+			newUserInput += userInput[i];
+		}
+		userInput = newUserInput;
+	}
+	*/
+	
+	
+	
 
 	//color the tax and income cells that have data
 	//note that tax and income are in two separate arrays
@@ -397,16 +456,10 @@ let chooseFunction = function(whichFunctions) {
 		}
 	}
 
-	/*
-	//append paragraphs.
-	document.body.appendChild(paraOne);
-	document.body.appendChild(paraTwo);
-	document.body.appendChild(paraThree);
-	document.body.appendChild(paraFour);
-	document.body.appendChild(paraFive);
-	document.body.appendChild(paraSix);
-	document.body.appendChild(paraNet);
-	*/
+	
+
+	
+	
 }	
 
 submit.addEventListener('click', chooseFunction);
