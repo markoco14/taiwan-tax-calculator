@@ -93,6 +93,7 @@ let toggleSalary = function(e) {
 
 		console.log('You switch to monthly salary mode');
 		console.log(maxTaxArray);
+		input.focus();
 	} else { //convert to annual
 		if (monthlySalary.className === 'salary-off') {
 			return
@@ -144,6 +145,7 @@ let toggleSalary = function(e) {
 		maxTaxArray[4] += 4;
 		console.log('You switched to annual salary mode.');
 		console.log(maxTaxArray);
+		input.focus();
 	}
 }
 

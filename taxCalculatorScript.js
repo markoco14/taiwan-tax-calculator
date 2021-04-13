@@ -388,12 +388,14 @@ let userInput;
 let chooseFunction = function(whichFunctions) {
 	if (input.value === '') {
 		alert('You need to enter a number to use the tax calculator.')
+		input.focus();
 		return
 	} 
 
 	if (!(Number(input.value) >= 0)) {
 		alert('You need to enter a number to use the tax calculator.')
 		input.value = '';
+		input.focus();
 		return
 	}
 

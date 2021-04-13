@@ -106,6 +106,9 @@ let changeCurrency = function() {
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
 			currencyFlag.setAttribute('src', 'images/flagCanada.png');
+			currencyFlag.setAttribute('alt', 'An image of the Canadian flag.');
+			//change the text content of the Selected Currency
+			selectedExchange.textContent = Canada +'s';
 			break;
 		case('USD'):
 			//convert the taxes
@@ -120,6 +123,9 @@ let changeCurrency = function() {
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
 			currencyFlag.setAttribute('src', 'images/flagUS.png');
+			currencyFlag.setAttribute('alt', 'An image of the American flag.');
+			//change the text content of the Selected Currency
+			selectedExchange.textContent = America +'s';
 			break;
 		case('AUD'):
 			//convert the taxes
@@ -134,20 +140,9 @@ let changeCurrency = function() {
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
 			currencyFlag.setAttribute('src', 'images/flagAustralia.png');
-			break;
-		case('EUR'): //Note the european exchange rate is 1.
-			//convert the taxes
-			eurTax = correctedTax * currencyData.rates.EUR;
-			foreignTax.textContent = `\u20ac${Math.floor(eurTax).toLocaleString('en-US')}`;
-			yourTax.textContent = 'Euros'
-			//convert the income
-			eurIncome = correctedIncome * currencyData.rates.EUR;
-			foreignIncome.textContent = `\u20ac${Math.floor(eurIncome).toLocaleString('en-US')}`;
-			yourIncome.textContent = 'Euros'
-			//set the classes
-			foreignTax.className = 'tax-data'
-			foreignIncome.className = 'income-data'
-			currencyFlag.setAttribute('src', 'images/flagIreland.png');
+			currencyFlag.setAttribute('alt', 'An image of the Australian flag.');
+			//change the text content of the Selected Currency
+			selectedExchange.textContent = Australia +'s';
 			break;
 		case('GBP'):
 			//convert the taxes
@@ -162,6 +157,26 @@ let changeCurrency = function() {
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
 			currencyFlag.setAttribute('src', 'images/flagUK.png');
+			currencyFlag.setAttribute('alt', 'An image of the United Kingdom flag.');
+			//change the text content of the Selected Currency
+			selectedExchange.textContent = United + 's';
+			break;
+		case('EUR'): //Note the european exchange rate is 1.
+			//convert the taxes
+			eurTax = correctedTax * currencyData.rates.EUR;
+			foreignTax.textContent = `\u20ac${Math.floor(eurTax).toLocaleString('en-US')}`;
+			yourTax.textContent = 'Euros'
+			//convert the income
+			eurIncome = correctedIncome * currencyData.rates.EUR;
+			foreignIncome.textContent = `\u20ac${Math.floor(eurIncome).toLocaleString('en-US')}`;
+			yourIncome.textContent = 'Euros'
+			//set the classes
+			foreignTax.className = 'tax-data'
+			foreignIncome.className = 'income-data'
+			currencyFlag.setAttribute('src', 'images/flagIreland.png');
+			currencyFlag.setAttribute('alt', 'An image of the Irish flag.');
+			//change the text content of the Selected Currency
+			selectedExchange.textContent = Euro +'s';;
 			break;
 		case('NZD'):
 			//convert the taxes
@@ -176,6 +191,9 @@ let changeCurrency = function() {
 			foreignTax.className = 'tax-data'
 			foreignIncome.className = 'income-data'
 			currencyFlag.setAttribute('src', 'images/flagNZ.png');
+			currencyFlag.setAttribute('alt', 'An image of the New Zealand flag.');
+			//change the text content of the Selected Currency
+			selectedExchange.textContent = Newzealand + 's';
 			break;
 		default:
 			foreignTax.textContent = '';
