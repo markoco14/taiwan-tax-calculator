@@ -528,11 +528,6 @@ let chooseFunction = function(whichFunctions) {
 			tableIncomeArray[i].className = 'no-income-data'
 		}
 	}
-
-	
-
-	
-	
 }	
 
 submit.addEventListener('click', chooseFunction);
